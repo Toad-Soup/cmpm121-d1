@@ -23,8 +23,25 @@ button.addEventListener("click", () => {
   counterElement.innerHTML = counter.toString();
 });
 
-//step 3 increase coiunt by 1 each second using setInterval
+/*step 3 increase coiunt by 1 each second using setInterval
 setInterval(() => {
   counter += 1;
   counterElement.innerHTML = counter.toString();
 }, 1000); //1000 milliseconds in a second, had to google that :p
+*/
+
+//step 4 increment count every second based on frame rate
+let lastTime = performance.now();
+
+requestAnimationFrame(animate);
+function animate(timestamp: number) {
+  if (lastTime != null) { //make sure that time has passed and is valid
+    //calulate delta time for times passed, refrence: https://stackoverflow.com/questions/26576625/how-can-i-correctly-calculate-the-time-delta
+    const value = (timestamp - lastTime) / 1000; //take the current time, subtract the last time, and divide it by one second to find delta
+    counter += value; //increment the counter by the delta time that has passed based on framerate (so like 1/60th if 60 fps)
+    counterElement.innerHTML = counter.toFixed(0); //increment by 1 per second but the value is a float it needs to be fixed so it doesnt look bad
+  }
+
+  lastTime = timestamp;
+  requestAnimationFrame((t) => animate(t));
+}
