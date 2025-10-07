@@ -12,10 +12,11 @@ document.body.innerHTML = `
     id="increment">💿</button>
 `;
 
-// Add click handler
+// const click handler
 const button = document.getElementById("increment")!;
 const counterElement = document.getElementById("counter")!;
 
+//add the ability to click the button
 button.addEventListener("click", () => {
   // increment the counter when the button is clicked
   counter += 1;
