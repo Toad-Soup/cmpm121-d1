@@ -3,3 +3,12 @@
   vertical-align: top;
   border: 1px solid salmon;
 }
+
+.styled {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 100px;
+  height: 100px;
+  font-size: 100px;
+}
