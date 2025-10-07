@@ -4,6 +4,7 @@ import "./style.css";
 let counter: number = 0;
 
 // Create basic HTML structure
+//added body of the button and used styling in CSS to remove border
 document.body.innerHTML = `
   <h1>CD Player</h1>
   <p>Counter: <span id="counter">0</span></p>
