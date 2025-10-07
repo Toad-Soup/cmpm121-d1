@@ -22,3 +22,9 @@ button.addEventListener("click", () => {
   counter += 1;
   counterElement.innerHTML = counter.toString();
 });
+
+//step 3 increase coiunt by 1 each second using setInterval
+setInterval(() => {
+  counter += 1;
+  counterElement.innerHTML = counter.toString();
+}, 1000); //1000 milliseconds in a second, had to google that :p
