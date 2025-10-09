@@ -2,6 +2,7 @@ import "./style.css";
 
 // Simple counter for demonstration
 let counter: number = 0;
+let growthRate: number = 0;
 let ACost: number = 10;
 let BCost: number = 100;
 let CCost: number = 1000;
@@ -11,6 +12,7 @@ let CCost: number = 1000;
 document.body.innerHTML = `
   <h1>CD Player</h1>
   <p>Times Played: <span id="counter">0</span></p>
+  <div>Time playing per second: <span id = "growth">0</span></div>
   <div class = "button-container">
     <button class = "favorite styled" id="increment">💿</button>
     <button class = "upgrade1" id = "upgrade1">Auto Clicker Cost: 10</button>
@@ -22,6 +24,7 @@ document.body.innerHTML = `
 // const click handler
 const button = document.getElementById("increment")!;
 const counterElement = document.getElementById("counter")!;
+const growthElement = document.getElementById("growth")!;
 const autoClicker = document.getElementById("upgrade1")!;
 const autoClicker2 = document.getElementById("upgrade2")!;
 const autoClicker3 = document.getElementById("upgrade3")!;
@@ -52,7 +55,9 @@ autoClicker.addEventListener("click", () => {
   if (counter >= ACost) {
     lastTime = performance.now();
     ACost *= 1.15;
+    growthRate += .1;
     autoClicker.innerHTML = "Auto Clicker Cost: " + ACost.toFixed(2);
+    growthElement.innerHTML = growthRate.toString();
     requestAnimationFrame(animate1);
   }
 });
@@ -75,6 +80,7 @@ autoClicker2.addEventListener("click", () => {
   if (counter >= BCost) {
     lastTime = performance.now();
     BCost *= 1.5;
+    growthRate += 2;
     autoClicker.innerHTML = "Auto Clicker Cost: " + BCost.toFixed(2);
     requestAnimationFrame(animate2);
   }
@@ -83,7 +89,7 @@ autoClicker2.addEventListener("click", () => {
 //requestAnimationFrame(animate);
 function animate2() {
   setInterval(() => {
-    counter += .5;
+    counter += 2;
     counterElement.innerHTML = counter.toString();
   }, 1000);
 }
@@ -92,6 +98,7 @@ autoClicker3.addEventListener("click", () => {
   if (counter >= CCost) {
     lastTime = performance.now();
     CCost *= 1.5;
+    growthRate += 50;
     autoClicker.innerHTML = "Auto Clicker Cost: " + CCost.toFixed(2);
     requestAnimationFrame(animate3);
   }
