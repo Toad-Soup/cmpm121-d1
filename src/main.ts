@@ -1,7 +1,7 @@
 import "./style.css";
 
 // Simple counter for demonstration
-let counter: number = 100;
+let counter: number = 0;
 let growthRate: number = 0;
 let ACost: number = 10;
 let BCost: number = 100;
