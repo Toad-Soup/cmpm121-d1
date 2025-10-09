@@ -4,29 +4,34 @@
   border: 1px solid salmon;
 }
 
+body {
+  text-align: center;
+}
+
 .button-container {
   display: flex;
-  gap: 200px; /* Space between buttons */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px; /* Space between buttons */
   margin-top: 20px;
 }
 
 .styled {
   background-color: transparent;
+  text-align: center;
+  margin: 0;
   border: none;
   outline: none;
-  width: 100px;
-  height: 100px;
-  font-size: 100px;
-  display: flex;
+  font-size: 90px;
+  /*display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
 }
 
 .auto {
-  position: relative;
+  text-align: center;
   height: 20px;
-  top: 150px;
-  right: 290px;
 }
 
 @keyframes spin {

@@ -2,22 +2,29 @@ import "./style.css";
 
 // Simple counter for demonstration
 let counter: number = 0;
+let ACost: number = 10;
+let BCost: number = 100;
+let CCost: number = 1000;
 
 // Create basic HTML structure
 //added body of the button and used styling in CSS to remove border
 document.body.innerHTML = `
   <h1>CD Player</h1>
-  <p>Counter: <span id="counter">0</span></p>
+  <p>Times Played: <span id="counter">0</span></p>
   <div class = "button-container">
     <button class = "favorite styled" id="increment">💿</button>
-    <button class = "auto" id ="auto">Auto Click</button>
+    <button class = "upgrade1" id = "upgrade1">Auto Clicker Cost: 10</button>
+    <button class = "upgrade2" id = "upgrade2">Auto Clicker Cost: 100</button>
+    <button class = "upgrade3" id = "upgrade3">Auto Clicker Cost: 1000<button>
   <div>
 `;
 
 // const click handler
 const button = document.getElementById("increment")!;
 const counterElement = document.getElementById("counter")!;
-const autoClicker = document.getElementById("auto")!;
+const autoClicker = document.getElementById("upgrade1")!;
+const autoClicker2 = document.getElementById("upgrade2")!;
+const autoClicker3 = document.getElementById("upgrade3")!;
 
 //add the ability to click the button
 button.addEventListener("click", () => {
@@ -42,22 +49,58 @@ setInterval(() => {
 let lastTime: number = 0;
 
 autoClicker.addEventListener("click", () => {
-  if (counter >= 10) {
+  if (counter >= ACost) {
     lastTime = performance.now();
-    requestAnimationFrame(animate);
+    ACost *= 1.15;
+    autoClicker.innerHTML = "Auto Clicker Cost: " + ACost.toFixed(2);
+    requestAnimationFrame(animate1);
   }
 });
 
 //requestAnimationFrame(animate);
-function animate(timestamp: number) {
+function animate1(timestamp: number) {
   if (lastTime != null) { //make sure that time has passed and is valid
     //calulate delta time for times passed, refrence: https://stackoverflow.com/questions/26576625/how-can-i-correctly-calculate-the-time-delta
     const value = (timestamp - lastTime) / 1000; //take the current time, subtract the last time, and divide it by one second to find delta
-    counter += value; //increment the counter by the delta time that has passed based on framerate (so like 1/60th if 60 fps)
-    counterElement.innerHTML = counter.toFixed(0); //increment by 1 per second but the value is a float it needs to be fixed so it doesnt look bad
+    counter += value / 100; //increment the counter by the delta time that has passed based on framerate (so like 1/60th if 60 fps)
+    counterElement.innerHTML = counter.toFixed(2); //increment by 1 per second but the value is a float it needs to be fixed so it doesnt look bad
     button.classList.add("infinite-spin");
   }
 
   lastTime = timestamp;
-  requestAnimationFrame((t) => animate(t));
+  requestAnimationFrame((t) => animate1(t));
+}
+
+autoClicker2.addEventListener("click", () => {
+  if (counter >= BCost) {
+    lastTime = performance.now();
+    BCost *= 1.5;
+    autoClicker.innerHTML = "Auto Clicker Cost: " + BCost.toFixed(2);
+    requestAnimationFrame(animate2);
+  }
+});
+
+//requestAnimationFrame(animate);
+function animate2() {
+  setInterval(() => {
+    counter += .5;
+    counterElement.innerHTML = counter.toString();
+  }, 1000);
+}
+
+autoClicker3.addEventListener("click", () => {
+  if (counter >= CCost) {
+    lastTime = performance.now();
+    CCost *= 1.5;
+    autoClicker.innerHTML = "Auto Clicker Cost: " + CCost.toFixed(2);
+    requestAnimationFrame(animate3);
+  }
+});
+
+//requestAnimationFrame(animate);
+function animate3() {
+  setInterval(() => {
+    counter += 50;
+    counterElement.innerHTML = counter.toString();
+  }, 1000);
 }
