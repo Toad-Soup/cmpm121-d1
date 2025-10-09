@@ -81,7 +81,8 @@ autoClicker2.addEventListener("click", () => {
     lastTime = performance.now();
     BCost *= 1.5;
     growthRate += 2;
-    autoClicker.innerHTML = "Auto Clicker Cost: " + BCost.toFixed(2);
+    autoClicker2.innerHTML = "Auto Clicker Cost: " + BCost.toFixed(2);
+    growthElement.innerHTML = growthRate.toString();
     requestAnimationFrame(animate2);
   }
 });
@@ -99,7 +100,8 @@ autoClicker3.addEventListener("click", () => {
     lastTime = performance.now();
     CCost *= 1.5;
     growthRate += 50;
-    autoClicker.innerHTML = "Auto Clicker Cost: " + CCost.toFixed(2);
+    autoClicker3.innerHTML = "Auto Clicker Cost: " + CCost.toFixed(2);
+    growthElement.innerHTML = growthRate.toString();
     requestAnimationFrame(animate3);
   }
 });
