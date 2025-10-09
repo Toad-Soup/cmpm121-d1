@@ -1,7 +1,7 @@
 import "./style.css";
 
 // Simple counter for demonstration
-let counter: number = 0;
+let counter: number = 100;
 let growthRate: number = 0;
 let ACost: number = 10;
 let BCost: number = 100;
@@ -25,7 +25,7 @@ document.body.innerHTML = `
 const button = document.getElementById("increment")!;
 const counterElement = document.getElementById("counter")!;
 const growthElement = document.getElementById("growth")!;
-const autoClicker = document.getElementById("upgrade1")!;
+const autoClicker1 = document.getElementById("upgrade1")!;
 const autoClicker2 = document.getElementById("upgrade2")!;
 const autoClicker3 = document.getElementById("upgrade3")!;
 
@@ -49,67 +49,45 @@ setInterval(() => {
 }, 1000); //1000 milliseconds in a second, had to google that :p
 */
 
-let lastTime: number = 0;
+autoclicker();
+//let lastTime: number = 0;
 
-autoClicker.addEventListener("click", () => {
+autoClicker1.addEventListener("click", () => {
   if (counter >= ACost) {
-    lastTime = performance.now();
+    //lastTime = performance.now();
     ACost *= 1.15;
-    growthRate += .1;
-    autoClicker.innerHTML = "Auto Clicker Cost: " + ACost.toFixed(2);
-    growthElement.innerHTML = growthRate.toString();
-    requestAnimationFrame(animate1);
+    growthRate += 0.1;
+    autoClicker1.innerHTML = "Auto Clicker Cost: " + ACost.toFixed(2);
+    growthElement.innerHTML = growthRate.toFixed(2);
   }
 });
-
-//requestAnimationFrame(animate);
-function animate1(timestamp: number) {
-  if (lastTime != null) { //make sure that time has passed and is valid
-    //calulate delta time for times passed, refrence: https://stackoverflow.com/questions/26576625/how-can-i-correctly-calculate-the-time-delta
-    const value = (timestamp - lastTime) / 1000; //take the current time, subtract the last time, and divide it by one second to find delta
-    counter += value / 100; //increment the counter by the delta time that has passed based on framerate (so like 1/60th if 60 fps)
-    counterElement.innerHTML = counter.toFixed(2); //increment by 1 per second but the value is a float it needs to be fixed so it doesnt look bad
-    button.classList.add("infinite-spin");
-  }
-
-  lastTime = timestamp;
-  requestAnimationFrame((t) => animate1(t));
-}
 
 autoClicker2.addEventListener("click", () => {
   if (counter >= BCost) {
-    lastTime = performance.now();
+    //lastTime = performance.now();
     BCost *= 1.5;
     growthRate += 2;
     autoClicker2.innerHTML = "Auto Clicker Cost: " + BCost.toFixed(2);
-    growthElement.innerHTML = growthRate.toString();
-    requestAnimationFrame(animate2);
+    growthElement.innerHTML = growthRate.toFixed(2);
   }
 });
-
-//requestAnimationFrame(animate);
-function animate2() {
-  setInterval(() => {
-    counter += 2;
-    counterElement.innerHTML = counter.toString();
-  }, 1000);
-}
 
 autoClicker3.addEventListener("click", () => {
   if (counter >= CCost) {
-    lastTime = performance.now();
+    //lastTime = performance.now();
     CCost *= 1.5;
     growthRate += 50;
     autoClicker3.innerHTML = "Auto Clicker Cost: " + CCost.toFixed(2);
-    growthElement.innerHTML = growthRate.toString();
-    requestAnimationFrame(animate3);
+    growthElement.innerHTML = growthRate.toFixed(2);
   }
 });
 
-//requestAnimationFrame(animate);
-function animate3() {
+//simplified code. thx tate appreciate u m8 :p
+function autoclicker() {
   setInterval(() => {
-    counter += 50;
-    counterElement.innerHTML = counter.toString();
+    counter += growthRate;
+    counterElement.innerHTML = counter.toFixed(2);
   }, 1000);
+
+  button.classList.add("infinite-spin");
 }
