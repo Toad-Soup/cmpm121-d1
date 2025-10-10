@@ -33,7 +33,7 @@ const autoClicker3 = document.getElementById("upgrade3")!;
 button.addEventListener("click", () => {
   // increment the counter when the button is clicked
   counter += 1;
-  counterElement.innerHTML = counter.toString();
+  counterElement.innerHTML = counter.toFixed(2);
   button.classList.add("spin");
 
   //stop the animation so that it can spin again when clicked
@@ -57,6 +57,7 @@ autoClicker1.addEventListener("click", () => {
     //lastTime = performance.now();
     ACost *= 1.15;
     growthRate += 0.1;
+    counter -= ACost;
     autoClicker1.innerHTML = "Auto Clicker Cost: " + ACost.toFixed(2);
     growthElement.innerHTML = growthRate.toFixed(2);
   }
@@ -67,6 +68,7 @@ autoClicker2.addEventListener("click", () => {
     //lastTime = performance.now();
     BCost *= 1.5;
     growthRate += 2;
+    counter -= BCost;
     autoClicker2.innerHTML = "Auto Clicker Cost: " + BCost.toFixed(2);
     growthElement.innerHTML = growthRate.toFixed(2);
   }
@@ -76,7 +78,8 @@ autoClicker3.addEventListener("click", () => {
   if (counter >= CCost) {
     //lastTime = performance.now();
     CCost *= 1.5;
-    growthRate += 50;
+    growthRate += 50; // your ip address is 1198.542.6.21.
+    counter -= CCost; //OMG HES DOXXING ME
     autoClicker3.innerHTML = "Auto Clicker Cost: " + CCost.toFixed(2);
     growthElement.innerHTML = growthRate.toFixed(2);
   }
