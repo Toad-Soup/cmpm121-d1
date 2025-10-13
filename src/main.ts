@@ -9,13 +9,42 @@ interface Item {
   name: string;
   cost: number;
   rate: number;
+  text: string;
   element?: HTMLButtonElement;
 }
 
+//why did deno frick my format man 😭😭😭😭😭😭😭
 const availableItems: Item[] = [
-  { name: "Turn Table", cost: 10, rate: 0.1 },
-  { name: "BoomBox", cost: 100, rate: 2 },
-  { name: "surround sound System", cost: 1000, rate: 50 },
+  {
+    name: "Turn Table",
+    cost: 10,
+    rate: 0.1,
+    text: "Simple turn table, plays music slowly",
+  },
+  {
+    name: "BoomBox",
+    cost: 100,
+    rate: 2,
+    text: "Boombox: slightly more expensive, but has better audio quality",
+  },
+  {
+    name: "Ipod Nano",
+    cost: 1000,
+    rate: 50,
+    text: "Small yet stylish the Ipod Nano is an upgrade to any outfit",
+  },
+  {
+    name: "Stereo",
+    cost: 10000,
+    rate: 100,
+    text: "Stereos: classic, gets the job done",
+  },
+  {
+    name: "Stolen Car Radio",
+    cost: 100000,
+    rate: 1000,
+    text: "Where did you even get that?!",
+  },
 ];
 
 // Create basic HTML structure
@@ -23,11 +52,12 @@ const availableItems: Item[] = [
 document.body.innerHTML = `
   <h1>CD Player</h1>
   <p>Times Played: <span id="counter">0</span></p>
-  <div>Time playing per second: <span id="growth">0</span></div>
+  <div>Times played per second: <span id="growth">0</span></div>
   <div class="button-container">
     <button class="favorite styled" id="increment">💿</button>
     <div id="upgrade-buttons"></div>
   </div>
+  <div id="tooltip" class="hidden"></div> <!-- Tooltip div -->
 `;
 
 // const click handler
@@ -35,6 +65,7 @@ const button = document.getElementById("increment")!;
 const counterElement = document.getElementById("counter")!;
 const growthElement = document.getElementById("growth")!;
 const upgradeContainer = document.getElementById("upgrade-buttons")!;
+const tooltip = document.getElementById("tooltip")!;
 
 button.addEventListener("click", () => {
   // increment the counter when the button is clicked
@@ -52,8 +83,6 @@ autoclicker();
 function autoclicker() {
   setInterval(() => {
     counter += growthRate;
-    console.log(growthRate);
-    console.log(counter);
     counterElement.innerHTML = counter.toFixed(2);
   }, 1000);
 
@@ -71,6 +100,24 @@ availableItems.forEach((item, index) => {
   upgradeContainer.appendChild(btn); //this was an absolute beast
 
   item.element = btn;
+
+  //shows text box when the mouse hovers over one of te buttons
+  const tooltipText = `${item.text}`;
+
+  // Hover events. thank you google ai. please never ever reccomend something ever again
+  btn.addEventListener("mouseenter", () => {
+    tooltip.textContent = tooltipText;
+    tooltip.classList.remove("hidden");
+  });
+
+  btn.addEventListener("mousemove", (e) => {
+    tooltip.style.left = `${e.pageX + 10}px`;
+    tooltip.style.top = `${e.pageY + 10}px`;
+  });
+
+  btn.addEventListener("mouseleave", () => {
+    tooltip.classList.add("hidden");
+  });
 
   //code for when one of the upgrade buttons is clicked
   //essentially used a replica of my old code but much more orderly since like
