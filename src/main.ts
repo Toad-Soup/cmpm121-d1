@@ -55,9 +55,9 @@ autoclicker();
 autoClicker1.addEventListener("click", () => {
   if (counter >= ACost) {
     //lastTime = performance.now();
+    counter -= ACost;
     ACost *= 1.15;
     growthRate += 0.1;
-    counter -= ACost;
     autoClicker1.innerHTML = "Auto Clicker Cost: " + ACost.toFixed(2);
     growthElement.innerHTML = growthRate.toFixed(2);
   }
@@ -66,9 +66,9 @@ autoClicker1.addEventListener("click", () => {
 autoClicker2.addEventListener("click", () => {
   if (counter >= BCost) {
     //lastTime = performance.now();
+    counter -= BCost;
     BCost *= 1.5;
     growthRate += 2;
-    counter -= BCost;
     autoClicker2.innerHTML = "Auto Clicker Cost: " + BCost.toFixed(2);
     growthElement.innerHTML = growthRate.toFixed(2);
   }
@@ -77,9 +77,9 @@ autoClicker2.addEventListener("click", () => {
 autoClicker3.addEventListener("click", () => {
   if (counter >= CCost) {
     //lastTime = performance.now();
+    counter -= CCost;
     CCost *= 1.5;
-    growthRate += 50; // your ip address is 1198.542.6.21.
-    counter -= CCost; //OMG HES DOXXING ME
+    growthRate += 50;
     autoClicker3.innerHTML = "Auto Clicker Cost: " + CCost.toFixed(2);
     growthElement.innerHTML = growthRate.toFixed(2);
   }
