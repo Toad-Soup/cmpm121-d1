@@ -13,6 +13,7 @@ interface Item {
   element?: HTMLButtonElement;
 }
 
+//list of all upgrades and their information
 const availableItems: Item[] = [
   {
     name: "Turn Table",
@@ -47,7 +48,6 @@ const availableItems: Item[] = [
 ];
 
 // Create basic HTML structure
-//added body of the button and used styling in CSS to remove border
 document.body.innerHTML = `
   <h1>CD Player</h1>
   <p>Times Played: <span id="counter">0</span></p>
@@ -78,7 +78,7 @@ button.addEventListener("click", () => {
 
 autoclicker();
 
-//simplified code
+//autoclicker code
 function autoclicker() {
   setInterval(() => {
     counter += growthRate;
@@ -88,7 +88,7 @@ function autoclicker() {
   button.classList.add("infinite-spin");
 }
 
-//for each button/upgrade in avalible items: run this code
+//button setup and display
 availableItems.forEach((item, index) => {
   const displayButton = document.createElement("button"); //create new button to be displayed
 
@@ -99,7 +99,6 @@ availableItems.forEach((item, index) => {
 
   item.element = displayButton;
 
-  //shows text box when the mouse hovers over one of te buttons
   const tooltipText = `${item.text}`;
 
   // Hover events
