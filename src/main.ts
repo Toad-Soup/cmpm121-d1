@@ -59,7 +59,7 @@ document.body.innerHTML = `
   <div id="tooltip" class="hidden"></div> <!-- Tooltip div -->
 `;
 
-//click handler
+// const click handler
 const button = document.getElementById("increment")!;
 const counterElement = document.getElementById("counter")!;
 const growthElement = document.getElementById("growth")!;
@@ -89,45 +89,42 @@ function autoclicker() {
 }
 
 //for each button/upgrade in avalible items: run this code
-//kinda like an effed up for loop lol
 availableItems.forEach((item, index) => {
-  const button = document.createElement("button"); //create new button to be displayed
+  const displayButton = document.createElement("button"); //create new button to be displayed
 
   //display the buttons info
-  button.textContent = `${item.name} Cost: ${item.cost.toFixed(2)}`;
-  button.className = `upgrade${index + 1}`;
-  upgradeContainer.appendChild(button); //this was an absolute beast
+  displayButton.textContent = `${item.name} Cost: ${item.cost.toFixed(2)}`;
+  displayButton.className = `upgradeClass${index + 1}`;
+  upgradeContainer.appendChild(displayButton); //this was an absolute beast
 
-  item.element = button;
+  item.element = displayButton;
 
   //shows text box when the mouse hovers over one of te buttons
   const tooltipText = `${item.text}`;
 
-  // Hover events. thank you google ai. please never ever reccomend something ever again
-  button.addEventListener("mouseenter", () => {
+  // Hover events
+  displayButton.addEventListener("mouseenter", () => {
     tooltip.textContent = tooltipText;
     tooltip.classList.remove("hidden");
   });
 
-  button.addEventListener("mousemove", (e) => {
+  displayButton.addEventListener("mousemove", (e) => {
     tooltip.style.left = `${e.pageX + 10}px`;
     tooltip.style.top = `${e.pageY + 10}px`;
   });
 
-  button.addEventListener("mouseleave", () => {
+  displayButton.addEventListener("mouseleave", () => {
     tooltip.classList.add("hidden");
   });
 
   //code for when one of the upgrade buttons is clicked
-  //essentially used a replica of my old code but much more orderly since like
-  //we have the classe now
-  button.addEventListener("click", () => {
+  displayButton.addEventListener("click", () => {
     if (counter >= item.cost) {
       counter -= item.cost;
       growthRate += item.rate;
 
       item.cost *= 1.15;
-      button.textContent = `${item.name} Cost: ${item.cost.toFixed(2)}`;
+      displayButton.textContent = `${item.name} Cost: ${item.cost.toFixed(2)}`;
       growthElement.innerHTML = growthRate.toFixed(2);
       counterElement.innerHTML = counter.toFixed(2);
     }
