@@ -4,7 +4,7 @@ import "./style.css";
 let counter: number = 0;
 let growthRate: number = 0;
 
-//refactor or whatever to classes
+//refactored to classes
 interface Item {
   name: string;
   cost: number;
@@ -13,7 +13,6 @@ interface Item {
   element?: HTMLButtonElement;
 }
 
-//why did deno frick my format man 😭😭😭😭😭😭😭
 const availableItems: Item[] = [
   {
     name: "Turn Table",
@@ -60,7 +59,7 @@ document.body.innerHTML = `
   <div id="tooltip" class="hidden"></div> <!-- Tooltip div -->
 `;
 
-// const click handler
+//click handler
 const button = document.getElementById("increment")!;
 const counterElement = document.getElementById("counter")!;
 const growthElement = document.getElementById("growth")!;
@@ -79,7 +78,7 @@ button.addEventListener("click", () => {
 
 autoclicker();
 
-//simplified code. thx tate appreciate u m8 :p
+//simplified code
 function autoclicker() {
   setInterval(() => {
     counter += growthRate;
@@ -92,43 +91,43 @@ function autoclicker() {
 //for each button/upgrade in avalible items: run this code
 //kinda like an effed up for loop lol
 availableItems.forEach((item, index) => {
-  const btn = document.createElement("button"); //create new button to be displayed
+  const button = document.createElement("button"); //create new button to be displayed
 
   //display the buttons info
-  btn.textContent = `${item.name} Cost: ${item.cost.toFixed(2)}`;
-  btn.className = `upgrade${index + 1}`;
-  upgradeContainer.appendChild(btn); //this was an absolute beast
+  button.textContent = `${item.name} Cost: ${item.cost.toFixed(2)}`;
+  button.className = `upgrade${index + 1}`;
+  upgradeContainer.appendChild(button); //this was an absolute beast
 
-  item.element = btn;
+  item.element = button;
 
   //shows text box when the mouse hovers over one of te buttons
   const tooltipText = `${item.text}`;
 
   // Hover events. thank you google ai. please never ever reccomend something ever again
-  btn.addEventListener("mouseenter", () => {
+  button.addEventListener("mouseenter", () => {
     tooltip.textContent = tooltipText;
     tooltip.classList.remove("hidden");
   });
 
-  btn.addEventListener("mousemove", (e) => {
+  button.addEventListener("mousemove", (e) => {
     tooltip.style.left = `${e.pageX + 10}px`;
     tooltip.style.top = `${e.pageY + 10}px`;
   });
 
-  btn.addEventListener("mouseleave", () => {
+  button.addEventListener("mouseleave", () => {
     tooltip.classList.add("hidden");
   });
 
   //code for when one of the upgrade buttons is clicked
   //essentially used a replica of my old code but much more orderly since like
-  //we have the classe now lol
-  btn.addEventListener("click", () => {
+  //we have the classe now
+  button.addEventListener("click", () => {
     if (counter >= item.cost) {
       counter -= item.cost;
       growthRate += item.rate;
 
       item.cost *= 1.15;
-      btn.textContent = `${item.name} Cost: ${item.cost.toFixed(2)}`;
+      button.textContent = `${item.name} Cost: ${item.cost.toFixed(2)}`;
       growthElement.innerHTML = growthRate.toFixed(2);
       counterElement.innerHTML = counter.toFixed(2);
     }
