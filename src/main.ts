@@ -59,6 +59,10 @@ document.body.innerHTML = `
   <div id="tooltip" class="hidden"></div> <!-- Tooltip div -->
 `;
 
+//change the background color
+document.body.style.backgroundColor = "hsla(188, 52%, 83%, 1.00)";
+document.body.style.cursor = "url('./music-note.cur'), auto";
+
 // const click handler
 const button = document.getElementById("increment")!;
 const counterElement = document.getElementById("counter")!;
