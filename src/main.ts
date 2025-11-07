@@ -61,7 +61,7 @@ document.body.innerHTML = `
 
 //change the background color
 document.body.style.backgroundColor = "hsla(188, 52%, 83%, 1.00)";
-document.body.style.cursor = "url('./music-note.cur'), auto";
+document.body.style.cursor = "url('music-note.cur'), auto";
 
 // const click handler
 const button = document.getElementById("increment")!;
